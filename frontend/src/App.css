@@ -1,0 +1,182 @@
+#root {
+  /*max-width: 1280px; */
+  margin: auto; 
+  padding-top: 4rem;
+  text-align: start;
+  height: 100vh;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  box-shadow: none;
+  -webkit-box-shadow: 0 0 0 30px #fff inset !important;
+  -webkit-text-fill-color: #000;
+}
+
+.logo {
+  height: 4em;
+  padding: 1em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+
+.logo:hover {
+  filter: drop-shadow(0 0 2em #ffffffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.link{
+  color:#ffffff;
+  margin-left: auto;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  place-items: center;
+  overflow: hidden;
+}
+
+#loginBody {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-image: url(https://print.wit.edu/custom/login-bg.jpg?1677623330322);
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: hidden;
+}
+
+#homePage{
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  margin: 'auto';
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100%;
+}
+
+h1 {
+  font-size: 2.0em;
+  line-height: 2.3;
+  color:#ffffff;
+}
+
+p{
+  font-size: 1.5em;
+  line-height: 1;
+  color:#ffffff;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+/* 
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+} */
+
+.review-container {
+  height: 100vh; /* Set the height of the container */
+  overflow-y: auto; /* Make the container scrollable */
+}
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  background-color: lightgray;
+  overflow-y: auto; /* Make the panel scrollable vertically */
+}
+
+.white-border .MuiOutlinedInput-notchedOutline {
+  border-color: white !important;
+}
+
+.white-border-focused .MuiOutlinedInput-notchedOutline {
+  border-color: white !important;
+}
+
+.white-notched-outline {
+  border-color: white !important;
+}
+
+#popup *{
+  color: black;
+  padding: 0px;
+  margin: 0px;
+}
+
+::-webkit-scrollbar {
+  width: 10px; 
+}
+
+::-webkit-scrollbar-track {
+  background: #333;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #666; 
+  border-radius: 5px; 
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #888; }
