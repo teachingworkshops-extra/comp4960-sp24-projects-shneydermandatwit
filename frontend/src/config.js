@@ -1,1 +1,1 @@
-export const ROOT = 'https://ratemywit.onrender.com';
+export const ROOT = 'https://ratemywit-gbxs.onrender.com';
