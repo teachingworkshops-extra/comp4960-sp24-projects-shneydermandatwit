@@ -7,6 +7,8 @@ import '../App.css';
 import axios from 'axios';
 import { useLocation, useNavigate } from 'react-router-dom'; // Import useLocation
 import Cookies from 'js-cookie';
+import { ROOT } from '../config';
+
 
 
 const Review = () => {
@@ -112,7 +114,7 @@ const Review = () => {
         const fetchReviews = async () => {
             try {
                 console.log("Floor", floor);
-                const response = await axios.get(`http://localhost:5555/review/?building=${(!(building === "none") ? building : "")}&floor=${(!(floor === "none") ? floor : "")}&room=${(!(room === "none") ? room : "")}`);
+                const response = await axios.get(`${ROOT}/review/?building=${(!(building === "none") ? building : "")}&floor=${(!(floor === "none") ? floor : "")}&room=${(!(room === "none") ? room : "")}`);
                 setReviews(response.data); // Assuming response.data is an array of reviews
                 setNoReviewsFound(false); // Reset noReviewsFound state if reviews are found
             } catch (error) {
@@ -127,7 +129,7 @@ const Review = () => {
 
         const fetchRoomsList = async () => {
             if (!(building === "none") && !(floor === "none")) {
-                const responseRooms = await axios.get(`http://localhost:5555/review/rooms/?building=${building}&floor=${floor}`)
+                const responseRooms = await axios.get(`${ROOT}/review/rooms/?building=${building}&floor=${floor}`)
                 console.log("Room", responseRooms.data);
                 setRoomsList(responseRooms.data);
             }

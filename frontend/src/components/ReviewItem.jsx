@@ -4,6 +4,8 @@ import { grey, blueGrey } from '@mui/material/colors';
 import Cookies from 'js-cookie';
 import axios from 'axios';
 import { CheckCircle, Error } from '@mui/icons-material';
+import { ROOT } from '../config';
+
 
 
 const ReviewItem = ({ review }) => {
@@ -21,7 +23,7 @@ console.log(Cookies.get('permission') === 'admin')
     const token = Cookies.get('token');
 
     try {
-      await axios.delete(`http://localhost:5555/review/${id}`, {
+      await axios.delete(`${ROOT}/review/${id}`, {
         headers: {
           Authorization: `Bearer: ${token}`,
         },

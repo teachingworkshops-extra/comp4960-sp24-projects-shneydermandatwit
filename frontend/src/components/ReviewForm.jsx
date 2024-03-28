@@ -3,6 +3,8 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 import { TextField, Button, Typography, Grid, Box, Snackbar, SnackbarContent, IconButton } from '@mui/material';
 import { CheckCircle } from '@mui/icons-material';
+import { ROOT } from '../config';
+
 
 function ReviewForm({ building, floor, roomItem }) {
     const [title, setTitle] = useState('');
@@ -37,7 +39,7 @@ function ReviewForm({ building, floor, roomItem }) {
                 return;
             }
 
-            const response = await axios.post('http://localhost:5555/review/create', {
+            const response = await axios.post(`${ROOT}/review/create`, {
                 title,
                 description,
                 building,

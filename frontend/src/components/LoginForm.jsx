@@ -5,6 +5,8 @@ import Cookies from 'js-cookie';
 import { UserContext } from './UserContext';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import '../App.css'
+import { ROOT } from '../config';
+
 
 const LoginForm = () => {
   const [email, setEmail] = useState('');
@@ -31,7 +33,7 @@ const LoginForm = () => {
     }
 
     try {
-      const response = await axios.post('http://localhost:5555/user/login', {
+      const response = await axios.post(`${ROOT}/user/login`, {
         email,
         password,
       });
