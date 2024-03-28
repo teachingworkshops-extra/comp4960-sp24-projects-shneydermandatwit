@@ -5,6 +5,8 @@ import cors from "cors";
 import usersRoute from "./routes/usersRoute.js";
 import reviewsRoute from "./routes/reviewsRoute.js"
 import markersRoute from "./routes/markersRoute.js";
+const path = require('path'); // Import the 'path' module
+
 
 
 
