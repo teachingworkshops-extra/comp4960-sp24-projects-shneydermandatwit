@@ -1,1 +1,1 @@
-export const ROOT = 'http://localhost:5555';
+export const ROOT = 'https://ratemywit.onrender.com';
