@@ -3,6 +3,7 @@ import { Container, Typography, TextField, Button, Snackbar, SnackbarContent, Ic
 import { CheckCircle } from '@mui/icons-material';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { ROOT } from '../config';
 
 
 const CreateAccountForm = () => {
@@ -46,7 +47,7 @@ const CreateAccountForm = () => {
     }
 
     try {
-      const response = await axios.post('http://localhost:5555/user/register', {
+      const response = await axios.post(`${ROOT}/user/register`, {
         displayName,
         email,
         password,

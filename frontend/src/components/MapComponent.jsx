@@ -1,6 +1,8 @@
 import React, { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { ROOT } from '../config';
+
 
 const MapComponent = () => {
   const [map, setMap] = useState(null);
@@ -11,6 +13,7 @@ const MapComponent = () => {
   const navigate = useNavigate();
   const mapRef = useRef(null);
   const markerRefs = useRef({});
+  
 
   useEffect(() => {
     const initMap = () => {
@@ -38,7 +41,7 @@ const MapComponent = () => {
 
     const fetchMarkers = async () => {
       try {
-        const response = await axios.get(`http://localhost:5555/marker/`);
+        const response = await axios.get(`${ROOT}/marker/`);
         setData(response.data);
       } catch (error) {
         console.log(error);
