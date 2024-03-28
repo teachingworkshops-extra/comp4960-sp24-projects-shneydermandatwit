@@ -6,6 +6,7 @@ import usersRoute from "./routes/usersRoute.js";
 import reviewsRoute from "./routes/reviewsRoute.js"
 import markersRoute from "./routes/markersRoute.js";
 import path from "path";
+import { fileURLToPath } from 'url'; // Import the 'fileURLToPath' function from 'url' module
 
 
 
@@ -17,12 +18,15 @@ app.use('/user', usersRoute);
 app.use('/review', reviewsRoute);
 app.use('/marker', markersRoute);
 
+const __dirname = fileURLToPath(import.meta.url);
+
+// Catch-all route to serve index.html for all other routes
+app.use(express.static(path.join(__dirname, 'dist')));
 
 // Catch-all route to serve index.html for all other routes
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'index.html')); // Resolve the absolute path to 'index.html'
-  });
-
+  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+});
 
 
 app.get('/', (req,res)=>{
