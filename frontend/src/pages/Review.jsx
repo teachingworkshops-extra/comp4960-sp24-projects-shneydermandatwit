@@ -195,7 +195,7 @@ const Review = () => {
                             <b>Select a location</b>
                             <br />
                             {
-                                openBuildingSelect ? (<KeyboardArrowUpRounded />) : (<KeyboardArrowDownRounded />)
+                                !openBuildingSelect ? (<KeyboardArrowUpRounded />) : (<KeyboardArrowDownRounded />)
                             }
                         </Button>
                     </div>

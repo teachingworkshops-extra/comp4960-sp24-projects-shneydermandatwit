@@ -34,7 +34,7 @@ function ReviewForm({ building, floor, roomItem }) {
 
         try {
 
-            if (!title, !description, !building, !floor, !room) {
+            if (!title || !description || !building || !floor || !room || building === "none" || floor === "none" || room === "none") {
                 setErrorMessage("Please specify the building, floor, room, title and description.")
                 return;
             }
