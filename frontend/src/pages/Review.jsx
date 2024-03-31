@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Grid, Paper, Typography, Select, MenuItem, Collapse, Button, Dialog, DialogActions, DialogTitle, DialogContent } from '@mui/material';
-import { KeyboardArrowDownRounded, KeyboardArrowUpRounded } from '@mui/icons-material'
+import { Grid, Paper, Typography, Select, MenuItem, Collapse, Button, Dialog, DialogActions, DialogTitle, DialogContent, Divider } from '@mui/material';
+import { KeyboardArrowDownRounded, KeyboardArrowUpRounded, SearchOff } from '@mui/icons-material'
 import ReviewList from '../components/ReviewList';
 import ReviewForm from '../components/ReviewForm';
 import '../App.css';
@@ -8,6 +8,7 @@ import axios from 'axios';
 import { useLocation, useNavigate } from 'react-router-dom'; // Import useLocation
 import Cookies from 'js-cookie';
 import { ROOT } from '../config';
+import { grey } from '@mui/material/colors';
 
 
 
@@ -21,13 +22,13 @@ const Review = () => {
 
 
     const navigate = useNavigate()
- 
+
     const location = useLocation(); //
     const { state } = location;
     const buildingParam = state ? state.buildingParam : null;
 
     useEffect(() => {
-        if (buildingParam) { 
+        if (buildingParam) {
             setBuilding(buildingParam);
             setFloor('none');
             setRoom('none');
@@ -152,99 +153,104 @@ const Review = () => {
         setDialogOpen(!openReviewDialog);
     };
     return (
-        <Grid container spacing={1} style={{ height: '100vh', marginBottom: '50px'}}>
+        <Grid container spacing={1} style={{ height: '100vh', marginBottom: '50px' }}>
             <Grid item xs={12} style={{ height: '100%', paddingBottom: '50px' }}>
-            <div className='reviewPage' style={{ height: 'calc(100% - 50px)', overflow: 'hidden', overflowY: 'auto', padding: '16px' }}>
-                <div style={{ border: '2px solid chocolate', borderRadius: '5.5px' }}>
-                    <Collapse in={!openBuildingSelect}>
-                        <Paper className="panel" style={{ elevation: 20, display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', height: '100%', backgroundColor: 'white', padding: '10px' }}>
-                            <div style={{ width: '70%', paddingRight: '45px' }}>
-                                <Typography variant="h7" style={{ color: '#333' }}>Building</Typography>
+                <div className='reviewPage' style={{ height: 'calc(100% - 50px)', overflow: 'hidden', overflowY: 'auto', padding: '16px' }}>
+                    <div style={{ border: '2px solid chocolate', borderRadius: '5.5px' }}>
+                        <Collapse in={!openBuildingSelect}>
+                            <Paper className="panel" style={{ elevation: 20, display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', height: '100%', padding: '10px', backgroundColor: grey[200] }}>
+                                <div style={{ width: '70%', paddingRight: '45px' }}>
+                                    <Typography variant="h7" style={{ color: '#333' }}>Building</Typography>
+                                    <br />
+                                    <Select fullWidth value={building} onChange={handleBuildingChange} color= 'warning'>
+                                        <MenuItem value="none">None</MenuItem>
+                                        {buildingData.map((building, index) => (
+                                            <MenuItem key={index} value={building.buildingName}>{building.buildingName}</MenuItem>
+                                        ))}
+                                    </Select>
+                                </div>
+                                <div style={{ width: '70%', paddingRight: '45px' }}>
+                                    <Typography variant="h7" style={{ color: '#333' }}>Floor</Typography>
+                                    <br />
+                                    <Select fullWidth value={floor} onChange={handleFloorChange} disabled={building === "none"} color='warning' >
+                                        <MenuItem value="none">None</MenuItem>
+                                        {floorList.map((floorItem, index) =>
+                                            <MenuItem key={index} value={floorItem}>{floorItem}</MenuItem>
+                                        )}
+                                    </Select>
+                                </div>
+                                <div style={{ width: '70%' }}>
+                                    <Typography variant="h7" style={{ color: '#333' }}>Room</Typography>
+                                    <br />
+                                    <Select fullWidth value={room} onChange={handleRoomChange} disabled={!(!(floor === "none") && !(building === "none"))} color='warning'>
+                                        <MenuItem value="none">None</MenuItem>
+                                        {roomsList.map((roomItem, index) =>
+                                            <MenuItem key={index} value={roomItem}>{roomItem}</MenuItem>
+                                        )}
+                                    </Select>
+                                </div>
+                            </Paper>
+                        </Collapse>
+                        <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', height: '7%', width: '100%' }}>
+                            <Button onClick={handleBuildingSelect} className="panel" style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', height: '100%', width: '100%',  backgroundColor: grey[200], outline: 'none', color: 'chocolate' }}>
+                                <b>Select a location</b>
                                 <br />
-                                <Select fullWidth value={building} onChange={handleBuildingChange} color='warning'>
-                                    <MenuItem value="none">None</MenuItem>
-                                    {buildingData.map((building, index) => (
-                                        <MenuItem key={index} value={building.buildingName}>{building.buildingName}</MenuItem>
-                                    ))}
-                                </Select>
-                            </div>
-                            <div style={{ width: '70%', paddingRight: '45px' }}>
-                                <Typography variant="h7" style={{ color: '#333' }}>Floor</Typography>
-                                <br />
-                                <Select fullWidth value={floor} onChange={handleFloorChange} disabled={building === "none"} color='warning' >
-                                    <MenuItem value="none">None</MenuItem>
-                                    {floorList.map((floorItem, index) =>
-                                        <MenuItem key={index} value={floorItem}>{floorItem}</MenuItem>
-                                    )}
-                                </Select>
-                            </div>
-                            <div style={{ width: '70%' }}>
-                                <Typography variant="h7" style={{ color: '#333' }}>Room</Typography>
-                                <br />
-                                <Select fullWidth value={room} onChange={handleRoomChange} disabled={!(!(floor === "none") && !(building === "none"))} color='warning'>
-                                    <MenuItem value="none">None</MenuItem>
-                                    {roomsList.map((roomItem, index) =>
-                                        <MenuItem key={index} value={roomItem}>{roomItem}</MenuItem>
-                                    )}
-                                </Select>
-                            </div>
-                        </Paper>
-                    </Collapse>
-                    <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', height: '7%', width: '100%' }}>
-                        <Button onClick={handleBuildingSelect} className="panel" style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', height: '100%', width: '100%', backgroundColor: 'white', outline: 'none', color: 'chocolate' }}>
-                            <b>Select a location</b>
-                            <br />
-                            {
-                                !openBuildingSelect ? (<KeyboardArrowUpRounded />) : (<KeyboardArrowDownRounded />)
-                            }
-                        </Button>
+                                {
+                                    !openBuildingSelect ? (<KeyboardArrowUpRounded />) : (<KeyboardArrowDownRounded />)
+                                }
+                            </Button>
+                        </div>
                     </div>
-                </div>
 
-                <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignContent: 'center', width: '100%', padding: '10px' }}>
-                    {building != 'none' ?
-                        (<h1 style={{ alignContent: 'center' }} >{building}</h1>) :
-                        (<h1>All Reviews</h1>)
-                    }
-                    <Button onClick={handleDialog} style={{ height: '20%', width: '9%', elevation: 20, backgroundColor: 'white', padding: '10px', border: '2px solid chocolate', borderRadius: '5.5px', alignSelf: 'center', color: 'chocolate', outline: 'none' }}>
-                        <b>New Review</b>
-                    </Button>
-                    <Dialog
-                        open={openReviewDialog}
-                        onClose={handleDialog}
-                    >
+                    <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignContent: 'center', width: '100%', paddingTop: '10px' }}>
                         {building != 'none' ?
-                            <DialogTitle style={{ paddingTop: '25px', paddingLeft: '15px', paddingBottom: '5px' }}
-                            ><b>Create a new review for {building}</b></DialogTitle> :
-                            <DialogTitle><b>Create a new review</b></DialogTitle>
+                            (<h1 style={{ alignContent: 'center' }} >{building}</h1>) :
+                            (<h1>All Reviews</h1>)
                         }
+                        <Button onClick={handleDialog} style={{ height: '20%', width: '9%', elevation: 20,  backgroundColor: grey[200], padding: '10px', border: '2px solid chocolate', borderRadius: '5.5px', alignSelf: 'center', color: 'chocolate', outline: 'none' }}>
+                            <b>New Review</b>
+                        </Button>
+                        <Dialog
+                            open={openReviewDialog}
+                            onClose={handleDialog}
+                        >
+                            {building != 'none' ?
+                                <DialogTitle style={{ paddingTop: '25px', paddingLeft: '15px', paddingBottom: '5px' }}
+                                ><b>Create a new review for {building}</b></DialogTitle> :
+                                <DialogTitle><b>Create a new review</b></DialogTitle>
+                            }
 
-                        <DialogContent
-                            style={{ padding: '0px', paddingLeft: '8px', paddingRight: '8px' }}>
-                            {getToken() ? (
-                                <ReviewForm building={building} floor={floor} roomItem={room} />
-                            ) : (
-                                <p style={{ margin: "10vh auto" }}>Please <a href='/login'>log in </a>to post a review.</p>
-                            )}
-                        </DialogContent>
-                        <DialogActions style={{ padding: '0px', paddingBottom: '25px', paddingLeft: '8px', paddingRight: '8px', display: 'flex', flexDirection: 'row', justifyContent: 'center', alignContent: 'center' }} >
-                            <Button
-                                style={{ width: "95%", alignSelf: 'left' }}
-                                variant="outlined"
-                                color="warning"
-                                onClick={handleDialog}>Cancel</Button>
-                        </DialogActions>
-                    </Dialog>
+                            <DialogContent
+                                style={{ padding: '0px', paddingLeft: '8px', paddingRight: '8px' }}>
+                                {getToken() ? (
+                                    <ReviewForm building={building} floor={floor} roomItem={room} />
+                                ) : (
+                                    <p style={{ margin: "10vh auto" }}>Please <a href='/login'>log in </a>to post a review.</p>
+                                )}
+                            </DialogContent>
+                            <DialogActions style={{ padding: '0px', paddingBottom: '25px', paddingLeft: '8px', paddingRight: '8px', display: 'flex', flexDirection: 'row', justifyContent: 'center', alignContent: 'center' }} >
+                                <Button
+                                    style={{ width: "95%", alignSelf: 'left' }}
+                                    variant="outlined"
+                                    color="warning"
+                                    onClick={handleDialog}>Cancel</Button>
+                            </DialogActions>
+                        </Dialog>
+                    </div>
+                    <div style={{paddingBottom:'16px'}}>
+                        <Divider sx={{ bgcolor: "white" }} />
+                    </div>
+                    {noReviewsFound ?
+                        (
+                            <p style={{ width: '100%', color: 'white', display:'flex', flexDirection: 'row', justifyContent:'center', paddingTop:'40px'}}>
+                                <b>No reviews found  <SearchOff /></b>
+                            </p>
+
+                        ) :
+                        (
+                            <ReviewList reviews={reviews} />
+                        )}
                 </div>
-
-                {noReviewsFound ?
-                    (
-                        <p style={{ margin: '10px auto', color: 'red' }}>No reviews found.</p>
-                    ) :
-                    (
-                        <ReviewList reviews={reviews} />
-                    )}
-            </div>
             </Grid>
         </Grid>
 

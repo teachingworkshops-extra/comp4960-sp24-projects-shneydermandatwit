@@ -53,31 +53,31 @@ console.log(Cookies.get('permission') === 'admin')
   }
 
   return (
-    <Card variant='outlined' sx={{ backgroundColor: grey[900], color: grey[100] }}>
+    <Card variant='outlined' sx={{ backgroundColor: grey[200], color: grey[100], elevation:24, boxShadow: 3 }}>
       <CardContent>
         <Grid container spacing={2} alignItems="center" sx={{ marginBottom: '3vh' }}>
           <Grid item>
             <Avatar sx={{ bgcolor: "orange" }}>{firstLetter}</Avatar>
           </Grid>
           <Grid item>
-            <Typography variant="body1" gutterBottom sx={{ color: blueGrey[300], fontWeight: 'bold' }}>
+            <Typography variant="body1" gutterBottom sx={{ color: blueGrey[900], fontWeight: 'bold' }}>
               {review.posterDisplayName}
             </Typography>
           </Grid>
         </Grid>
-        <Typography variant="h5" gutterBottom sx={{ color: blueGrey[200] }}>
+        <Typography variant="h5" gutterBottom sx={{ color: blueGrey[900] }}>
           {review.title}
         </Typography>
-        <Typography variant="body1" gutterBottom sx={{ color: blueGrey[300] }}>
+        <Typography variant="body1" gutterBottom sx={{ color: blueGrey[800] }}>
           {review.description}
         </Typography>
-        <Typography variant="body2" gutterBottom sx={{ color: blueGrey[300] }}>
+        <Typography variant="body2" gutterBottom sx={{ color: blueGrey[800] }}>
           Building: {review.building}
         </Typography>
-        <Typography variant="body2" gutterBottom sx={{ color: blueGrey[300] }}>
+        <Typography variant="body2" gutterBottom sx={{ color: blueGrey[800] }}>
           Floor: {review.floor}
         </Typography>
-        <Typography variant="body2" gutterBottom sx={{ color: blueGrey[300] }}>
+        <Typography variant="body2" gutterBottom sx={{ color: blueGrey[800] }}>
           Room: {review.room}
         </Typography>
         {(review.posterEmail === decodeCookie() || Cookies.get('permission') === 'admin') && (
