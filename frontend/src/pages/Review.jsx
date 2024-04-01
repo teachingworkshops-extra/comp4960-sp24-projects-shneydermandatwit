@@ -205,10 +205,11 @@ const Review = () => {
                             open={openReviewDialog}
                             onClose={handleDialog}
                         >
-                            {building != 'none' ?
-                                <DialogTitle style={{ paddingTop: '25px', paddingLeft: '15px', paddingBottom: '5px' }}
-                                ><b>Create a new review for {building}</b></DialogTitle> :
-                                <DialogTitle><b>Create a new review</b></DialogTitle>
+                            {(getToken() ? ((building != 'none') ?
+                                (<DialogTitle style={{ paddingTop: '25px', paddingLeft: '15px', paddingBottom: '5px' }}
+                                ><b>Create a new review for {building}</b></DialogTitle>) :
+                                (<DialogTitle><b>Create a new review</b></DialogTitle>)):(void(0)))
+                                
                             }
 
                             <DialogContent
