@@ -8,6 +8,7 @@ import Collapse from '@mui/material/Collapse';
 import Button from '@mui/material/Button';
 import CloseIcon from '@mui/icons-material/Close';
 import AlertTitle from '@mui/material/AlertTitle';
+import { grey } from '@mui/material/colors';
 
 const Home = () => {
   const [open, setOpen] = React.useState(true);
@@ -18,7 +19,7 @@ const Home = () => {
         <Box sx={{ width: '100%' }}>
           <Collapse in={open}>
             <Alert variant="outlined" severity="info" color="warning"
-              sx={{ mb: 2, ml: 1, mr: 1, bgcolor: 'background.paper' }}
+              sx={{ mb: 2, ml: 1, mr: 1, bgcolor: 'background.paper', border: '3px solid chocolate', color: grey[900] }}
               action={
                 <IconButton
                   aria-label="close"
