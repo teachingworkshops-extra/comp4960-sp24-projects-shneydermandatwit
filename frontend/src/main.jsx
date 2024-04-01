@@ -7,22 +7,21 @@ import Login from './pages/Login.jsx'
 import './index.css'
 import HomeAppBar from './components/HomeAppBar.jsx';
 import CreateAccount from './pages/CreateAccount.jsx';
-import {UserContextProvider} from './components/UserContext.jsx';
-
+import { UserContextProvider } from './components/UserContext.jsx';
 
 export default function App() {
   return (
     <BrowserRouter>
-    <UserContextProvider>
-      <Routes>
-        <Route path="/" element={<HomeAppBar />}>
-        <Route index element={<Login />} />
-        <Route path="home" element={<Home />} />
-        <Route path="review" element={<Review />} />
-        <Route path="login" element={<Login />} />
-        <Route path="register" element={<CreateAccount />} />
-        </Route>
-      </Routes>
+      <UserContextProvider>
+        <Routes>
+          <Route path="/" element={<HomeAppBar />}>
+            <Route index element={<Login />} />
+            <Route path="home" element={<Home />} />
+            <Route path="review" element={<Review />} />
+            <Route path="login" element={<Login />} />
+            <Route path="register" element={<CreateAccount />} />
+          </Route>
+        </Routes>
       </UserContextProvider>
     </BrowserRouter>
   );
