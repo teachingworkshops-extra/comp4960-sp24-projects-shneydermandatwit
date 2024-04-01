@@ -30,6 +30,7 @@ const MapComponent = () => {
         mapTypeControl: false,
         fullscreenControl: false,
         tilt: 20,
+        streetViewControl: false,
         restriction: {
           latLngBounds: bounds,
           strictBounds: true

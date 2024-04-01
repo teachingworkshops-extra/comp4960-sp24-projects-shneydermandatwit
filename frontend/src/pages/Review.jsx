@@ -225,7 +225,7 @@ const Review = () => {
                                 {getToken() ? (
                                     <ReviewForm building={building} floor={floor} roomItem={room} />
                                 ) : (
-                                    <p style={{ margin: "10vh auto" }}>Please <a href='/login'>log in </a>to post a review.</p>
+                                    <p style={{ margin: "10vh auto" , color:"black"}}>Please <a href='/login' style={{color: "orange"}}>log in </a>to post a review.</p>
                                 )}
                             </DialogContent>
                             <DialogActions style={{ padding: '0px', paddingBottom: '25px', paddingLeft: '8px', paddingRight: '8px', display: 'flex', flexDirection: 'row', justifyContent: 'center', alignContent: 'center' }} >
