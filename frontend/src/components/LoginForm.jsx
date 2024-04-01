@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Container, Typography, TextField, Button } from '@mui/material';
 import axios from 'axios';
 import Cookies from 'js-cookie';
@@ -14,6 +14,12 @@ const LoginForm = () => {
   const { userInfo, setUserInfo } = useContext(UserContext);
   const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
+
+  useEffect(()=>{
+    if(Cookies.get("token")){
+      navigate("/home");
+    }
+  },[])
 
 
   const handleEmailChange = (event) => {

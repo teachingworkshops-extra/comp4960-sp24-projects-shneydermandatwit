@@ -2,9 +2,19 @@ import '../App.css'
 import { Link } from "react-router-dom";
 import { useEffect } from 'react';
 import CreateAccountForm from '../components/CreateAccountForm';
+import Cookies from 'js-cookie';
+import { useNavigate } from 'react-router-dom';
 
 
   const CreateAccount = () => {
+
+    const navigate = useNavigate();
+
+    useEffect(()=>{
+      if(Cookies.get("token")){
+        navigate("/home");
+      }
+    },[])
     return (
         <>
         <div id='loginBody'>
