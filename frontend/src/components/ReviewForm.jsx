@@ -12,6 +12,7 @@ function ReviewForm({ building, floor, roomItem }) {
     const [room, setRoom] = useState('');
     const [successSnackbarOpen, setSuccessSnackbarOpen] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
+    const [canSubmit, setCanSubmit] = useState(false);
 
 
     useEffect(() => {
@@ -21,6 +22,21 @@ function ReviewForm({ building, floor, roomItem }) {
 
 
     }, [roomItem]);
+
+    useEffect(()=>{
+        if (!title || !description || !building || !floor || !room || building === "none" || floor === "none" || room === "none") {
+            setCanSubmit(false);
+            setErrorMessage("Please specify the building, floor, room, title and description.")
+
+        }
+        else{
+            setCanSubmit(true)
+            setErrorMessage("")
+
+        }
+        
+
+    },[title,description, room,building, floor])
 
     const handleCloseSnackbar = () => {
         setSuccessSnackbarOpen(false);
@@ -35,7 +51,6 @@ function ReviewForm({ building, floor, roomItem }) {
         try {
 
             if (!title || !description || !building || !floor || !room || building === "none" || floor === "none" || room === "none") {
-                setErrorMessage("Please specify the building, floor, room, title and description.")
                 return;
             }
 
@@ -153,7 +168,10 @@ function ReviewForm({ building, floor, roomItem }) {
                     <Grid item xs={12}>
                         <Button type="submit" fullWidth
                             variant="outlined"
-                            color="warning">
+                            color="warning"
+                            disabled={!canSubmit}
+                            >
+                            
                             Create review
                         </Button>
                     </Grid>
