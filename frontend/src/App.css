@@ -176,3 +176,20 @@ button:focus-visible {
 .gm-style-iw button[title="Close"] {
   display: none !important;
 }
+
+.notFound {
+  border: 3px solid;
+  border-color: chocolate;
+  background-color: #fff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 30px;
+  box-shadow: 3;
+}
+
+.notFoundText {
+  color: #212121;
+  text-align: center;
+}
