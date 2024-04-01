@@ -3,8 +3,9 @@ import { Typography, Card, CardContent, Avatar, Grid, Button, Snackbar, Snackbar
 import { grey, blueGrey } from '@mui/material/colors';
 import Cookies from 'js-cookie';
 import axios from 'axios';
-import { CheckCircle, Error } from '@mui/icons-material';
+import { CheckCircle, Error, Delete } from '@mui/icons-material';
 import { ROOT } from '../config';
+import '../App.css'
 
 const ReviewItem = ({ review }) => {
   const firstLetter = review.posterDisplayName.charAt(0).toUpperCase();
@@ -51,7 +52,7 @@ const ReviewItem = ({ review }) => {
   }
 
   return (
-    <Card variant='outlined' sx={{ backgroundColor: grey[200], color: grey[100], elevation:24, boxShadow: 3 }}>
+    <Card variant='outlined' sx={{ backgroundColor: grey[200], color: grey[100], elevation: 24, boxShadow: 3 }}>
       <CardContent>
         <Grid container spacing={2} alignItems="center" sx={{ marginBottom: '3vh' }}>
           <Grid item>
@@ -61,6 +62,11 @@ const ReviewItem = ({ review }) => {
             <Typography variant="body1" gutterBottom sx={{ color: blueGrey[900], fontWeight: 'bold' }}>
               {review.posterDisplayName}
             </Typography>
+          </Grid>
+          <Grid item alignSelf={'center'} marginLeft='auto'>
+            {(review.posterEmail === decodeCookie() || Cookies.get('permission') === 'admin') && (
+              <Delete className='delete' fontSize='large' onClick={() => deletePost(review._id)} />
+            )}
           </Grid>
         </Grid>
         <Typography variant="h5" gutterBottom sx={{ color: blueGrey[900] }}>
@@ -78,9 +84,6 @@ const ReviewItem = ({ review }) => {
         <Typography variant="body2" gutterBottom sx={{ color: blueGrey[800] }}>
           Room: {review.room}
         </Typography>
-        {(review.posterEmail === decodeCookie() || Cookies.get('permission') === 'admin') && (
-          <Button color="warning" onClick={() => deletePost(review._id)}>Delete</Button>
-        )}
       </CardContent>
       <Snackbar
         open={deleteSnackbarOpen}
