@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { ROOT } from '../config';
+import '../App.css'
 
 const MapComponent = () => {
   const [map, setMap] = useState(null);
