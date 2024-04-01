@@ -1,4 +1,5 @@
 import '../App.css'
+import { useEffect } from 'react';
 import CreateAccountForm from '../components/CreateAccountForm';
 import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router-dom';
