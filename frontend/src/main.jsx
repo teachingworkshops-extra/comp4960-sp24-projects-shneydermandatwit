@@ -7,6 +7,7 @@ import Login from './pages/Login.jsx'
 import './index.css'
 import HomeAppBar from './components/HomeAppBar.jsx';
 import CreateAccount from './pages/CreateAccount.jsx';
+import PageNotFound from './pages/PageNotFound.jsx';
 import { UserContextProvider } from './components/UserContext.jsx';
 
 export default function App() {
@@ -20,6 +21,7 @@ export default function App() {
             <Route path="review" element={<Review />} />
             <Route path="login" element={<Login />} />
             <Route path="register" element={<CreateAccount />} />
+            <Route path="*" element={<PageNotFound />} />
           </Route>
         </Routes>
       </UserContextProvider>
