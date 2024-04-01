@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Typography, Card, CardContent, Avatar, Grid, Button, Snackbar, SnackbarContent, IconButton } from '@mui/material';
 import { grey, blueGrey } from '@mui/material/colors';
 import Cookies from 'js-cookie';
@@ -6,13 +6,11 @@ import axios from 'axios';
 import { CheckCircle, Error } from '@mui/icons-material';
 import { ROOT } from '../config';
 
-
-
 const ReviewItem = ({ review }) => {
   const firstLetter = review.posterDisplayName.charAt(0).toUpperCase();
   const [deleteSnackbarOpen, setDeleteSnackbarOpen] = useState(false);
   const [deleteSuccess, setDeleteSuccess] = useState(false);
-console.log(Cookies.get('permission') === 'admin')
+  console.log(Cookies.get('permission') === 'admin')
 
   const handleDeleteSnackbarClose = () => {
     setDeleteSnackbarOpen(false);

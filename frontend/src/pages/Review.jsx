@@ -10,8 +10,6 @@ import Cookies from 'js-cookie';
 import { ROOT } from '../config';
 import { grey } from '@mui/material/colors';
 
-
-
 const Review = () => {
     const [building, setBuilding] = useState(localStorage.getItem('building') || 'none');
     const [floor, setFloor] = useState(localStorage.getItem('floor') || 'none');
@@ -20,10 +18,9 @@ const Review = () => {
     const [roomsList, setRoomsList] = useState([]);
     const [noReviewsFound, setNoReviewsFound] = useState(false);
 
-
     const navigate = useNavigate()
 
-    const location = useLocation(); //
+    const location = useLocation();
     const { state } = location;
     const buildingParam = state ? state.buildingParam : null;
 
@@ -36,7 +33,6 @@ const Review = () => {
 
         }
     }, []);
-
 
     const buildingData = [
         {
@@ -81,11 +77,9 @@ const Review = () => {
         },
     ];
 
-
     const getToken = () => {
         return Cookies.get('token');
     }
-
 
     const handleBuildingChange = (event) => {
         let selectedBuilding = event.target.value;
@@ -94,19 +88,16 @@ const Review = () => {
         setRoom('none');
     };
 
-
     const handleFloorChange = (event) => {
         let selectedFloor = event.target.value;
         setFloor(selectedFloor);
         setRoom('none');
     };
 
-
     const handleRoomChange = (event) => {
         let selectedRoom = event.target.value;
         setRoom(selectedRoom);
     };
-
 
     useEffect(() => {
         localStorage.setItem('building', building);
@@ -253,7 +244,6 @@ const Review = () => {
                 </div>
             </Grid>
         </Grid>
-
     );
 }
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext} from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
@@ -7,16 +7,16 @@ import witLogo from './../assets/witlogo.png';
 import { Outlet, Link } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import Avatar from '@mui/material/Avatar';
-import {UserContext} from './UserContext.jsx';
+import { UserContext } from './UserContext.jsx';
 
 const HomeAppBar = () => {
-  const {userInfo, setUserInfo} = useContext(UserContext);
-  const [displayName,setDisplayName] = useState('');
+  const { userInfo, setUserInfo } = useContext(UserContext);
+  const [displayName, setDisplayName] = useState('');
 
   useEffect(() => {
     console.log("context changed");
     const displayNameFromCookie = Cookies.get('displayName');
-        setDisplayName(displayNameFromCookie);
+    setDisplayName(displayNameFromCookie);
   }, [userInfo]);
 
   const handleLogout = () => {
@@ -30,17 +30,16 @@ const HomeAppBar = () => {
 
   return (
     <>
-      <AppBar style={{ backgroundColor: 'grey'}}>
-        <Toolbar style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' , height: '10vh'}}>
+      <AppBar style={{ backgroundColor: 'grey' }}>
+        <Toolbar style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', height: '10vh' }}>
           <div style={{ display: 'flex', alignItems: 'center' }}>
-            <Link to="/home"> <img src={witLogo} className="logo" alt="WIT logo" width="67" style={{paddingTop:'3vh'}} /></Link>
+            <Link to="/home"> <img src={witLogo} className="logo" alt="WIT logo" width="67" style={{ paddingTop: '3vh' }} /></Link>
             <Typography variant="h6" component="div" sx={{ fontWeight: 'bold', color: 'inherit', marginLeft: '8px' }}>
-              <Link to="/home" style={{color: 'white'}}>RateMyWIT</Link>
+              <Link to="/home" style={{ color: 'white' }}>RateMyWIT</Link>
             </Typography>
           </div>
-          <div style={{ display: 'flex', gap: '1rem', alignItems: "center"}}>
-          <Link to="/home" className="link"> <Button color="inherit" sx={{ color: 'white' }}>Home</Button></Link>
-
+          <div style={{ display: 'flex', gap: '1rem', alignItems: "center" }}>
+            <Link to="/home" className="link"> <Button color="inherit" sx={{ color: 'white' }}>Home</Button></Link>
             <Link to="/review" className="link"> <Button color="inherit" sx={{ color: 'white' }}>Review</Button></Link>
             {displayName ? (
               <div style={{ display: 'flex', alignItems: 'center' }}>
@@ -52,8 +51,8 @@ const HomeAppBar = () => {
                   {displayName}
                 </Typography>
               </div>
-            ) : 
-            <Link to="/login" className="link"> <Button color="inherit" sx={{ color: 'white' }}>Login</Button></Link>
+            ) :
+              <Link to="/login" className="link"> <Button color="inherit" sx={{ color: 'white' }}>Login</Button></Link>
             }
           </div>
         </Toolbar>
@@ -61,6 +60,6 @@ const HomeAppBar = () => {
       <Outlet />
     </>
   );
-  };
+};
 
 export default HomeAppBar;
