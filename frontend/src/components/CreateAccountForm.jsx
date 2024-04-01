@@ -5,7 +5,6 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import { ROOT } from '../config';
 
-
 const CreateAccountForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -51,11 +50,11 @@ const CreateAccountForm = () => {
         displayName,
         email,
         password,
-      }); 
+      });
 
       console.log('Registration successful:', response.data);
       setSuccessSnackbarOpen(true); // Show success Snackbar
-      setErrorMessage(""); 
+      setErrorMessage("");
 
       setTimeout(() => {
         navigate('/login');
@@ -142,7 +141,6 @@ const CreateAccountForm = () => {
         />
       </Snackbar>
       <br />
-
       Already have an account? <a href="/login">Login</a>
     </Container>
   );

@@ -14,8 +14,8 @@ const Home = () => {
 
   return (
     <>
-      <div id='homePage' style={{ width: '100%', height: '100%', overflow: 'hidden', overflowY: 'auto'}}>
-        <Box sx={{ width: '100%'}}>
+      <div id='homePage' style={{ width: '100%', height: '100%', overflow: 'hidden', overflowY: 'auto' }}>
+        <Box sx={{ width: '100%' }}>
           <Collapse in={open}>
             <Alert variant="outlined" severity="info" color="warning"
               sx={{ mb: 2, ml: 1, mr: 1, bgcolor: 'background.paper' }}
@@ -61,7 +61,6 @@ const Home = () => {
             <MapContainer />
           </Box>
         </div>
-
       </div>
     </>
   )

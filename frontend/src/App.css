@@ -1,6 +1,5 @@
 #root {
-  /*max-width: 1280px; */
-  margin: auto; 
+  margin: auto;
   padding-top: 4rem;
   text-align: start;
   height: 100vh;
@@ -25,6 +24,7 @@ input:-webkit-autofill:active {
 .logo:hover {
   filter: drop-shadow(0 0 2em #ffffffaa);
 }
+
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
@@ -33,6 +33,7 @@ input:-webkit-autofill:active {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
@@ -48,8 +49,8 @@ input:-webkit-autofill:active {
   padding: 2em;
 }
 
-.link{
-  color:#ffffff;
+.link {
+  color: #ffffff;
   margin-left: auto;
 }
 
@@ -58,6 +59,7 @@ a {
   color: #646cff;
   text-decoration: inherit;
 }
+
 a:hover {
   color: #535bf2;
 }
@@ -80,7 +82,7 @@ body {
   overflow: hidden;
 }
 
-#homePage{
+#homePage {
   padding-top: 2rem;
   padding-bottom: 2rem;
   margin: 'auto';
@@ -92,13 +94,13 @@ body {
 h1 {
   font-size: 2.0em;
   line-height: 2.3;
-  color:#ffffff;
+  color: #ffffff;
 }
 
-p{
+p {
   font-size: 1.5em;
   line-height: 1;
-  color:#ffffff;
+  color: #ffffff;
 }
 
 button {
@@ -118,23 +120,11 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-/* 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
-} */
-
 .review-container {
-  height: 100vh; /* Set the height of the container */
-  overflow-y: auto; /* Make the container scrollable */
+  height: 100vh;
+  /* Set the height of the container */
+  overflow-y: auto;
+  /* Make the container scrollable */
 }
 
 .panel {
@@ -144,7 +134,8 @@ button:focus-visible {
   align-items: center;
   height: 100%;
   background-color: lightgray;
-  overflow-y: auto; /* Make the panel scrollable vertically */
+  overflow-y: auto;
+  /* Make the panel scrollable vertically */
 }
 
 .white-border .MuiOutlinedInput-notchedOutline {
@@ -159,14 +150,14 @@ button:focus-visible {
   border-color: white !important;
 }
 
-#popup *{
+#popup * {
   color: black;
   padding: 0px;
   margin: 0px;
 }
 
 ::-webkit-scrollbar {
-  width: 10px; 
+  width: 10px;
 }
 
 ::-webkit-scrollbar-track {
@@ -174,9 +165,10 @@ button:focus-visible {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #666; 
-  border-radius: 5px; 
+  background: #666;
+  border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #888; }
+  background: #888;
+}

@@ -7,7 +7,6 @@ import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import '../App.css'
 import { ROOT } from '../config';
 
-
 const LoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -20,7 +19,6 @@ const LoginForm = () => {
       navigate("/home");
     }
   },[])
-
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
@@ -99,7 +97,6 @@ const LoginForm = () => {
         </Button>
       </form>
       <br />
-
       Don't have an account? <a href="/register">Create Account</a>
     </Container>
   );
