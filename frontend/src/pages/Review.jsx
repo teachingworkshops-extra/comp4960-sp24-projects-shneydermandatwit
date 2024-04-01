@@ -8,6 +8,7 @@ import axios from 'axios';
 import { useLocation, useNavigate } from 'react-router-dom'; // Import useLocation
 import Cookies from 'js-cookie';
 import { ROOT } from '../config';
+import { grey } from '@mui/material/colors';
 
 const Review = () => {
     const [building, setBuilding] = useState(localStorage.getItem('building') || 'none');
@@ -19,7 +20,7 @@ const Review = () => {
 
     const navigate = useNavigate()
 
-    const location = useLocation(); //
+    const location = useLocation();
     const { state } = location;
     const buildingParam = state ? state.buildingParam : null;
 
