@@ -57,7 +57,7 @@ const Home = () => {
           </Button>
         </Box>
         <div style={{ height: 'calc(100% - 30px)', overflow: 'hidden', overflowY: 'auto', marginBottom: '10vh' }}>
-          <Box sx={{ border: 4, borderColor: "chocolate", width: '95%', height: '90%', margin: 'auto' }}>
+          <Box sx={{ border: 4, borderColor: "chocolate", width: '95%', height: '91%', margin: 'auto' }}>
             <MapContainer />
           </Box>
         </div>
