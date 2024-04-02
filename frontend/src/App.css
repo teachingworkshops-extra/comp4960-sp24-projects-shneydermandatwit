@@ -193,3 +193,14 @@ button:focus-visible {
   color: #212121;
   text-align: center;
 }
+
+.delete {
+  color: chocolate;
+  will-change: filter;
+  transition: filter 300ms;
+}
+
+.delete:hover {
+  -webkit-filter: drop-shadow(2px 2px 4px rgba(231, 96, 23, 0.4));
+  filter: drop-shadow(2px 2px 4px rgba(231, 87, 9, 0.4));
+}
