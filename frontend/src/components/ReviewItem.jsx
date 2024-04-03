@@ -1,16 +1,31 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Typography, Card, CardContent, Avatar, Grid, Button, Snackbar, SnackbarContent, IconButton } from '@mui/material';
-import { grey, blueGrey } from '@mui/material/colors';
+import { grey, blueGrey, orange } from '@mui/material/colors';
 import Cookies from 'js-cookie';
 import axios from 'axios';
-import { CheckCircle, Error, Delete } from '@mui/icons-material';
+import { CheckCircle, Error, Delete, AccessTime } from '@mui/icons-material';
 import { ROOT } from '../config';
 import '../App.css'
+import { Box } from '@mui/material';
 
 const ReviewItem = ({ review }) => {
   const firstLetter = review.posterDisplayName.charAt(0).toUpperCase();
   const [deleteSnackbarOpen, setDeleteSnackbarOpen] = useState(false);
   const [deleteSuccess, setDeleteSuccess] = useState(false);
+  const [formattedDate, setFormattedDate] = useState("");
+
+  useEffect(() => {
+    if (Object.keys(review).length > 0) {
+      const mongoTimestamp = review.updatedAt;
+      const date = new Date(mongoTimestamp);
+
+      const options = { year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit', timeZoneName: 'short' };
+      const formatted = date.toLocaleDateString('en-US', options);
+      setFormattedDate(formatted);
+
+    }
+  }, [review])
+
   console.log(Cookies.get('permission') === 'admin')
 
   const handleDeleteSnackbarClose = () => {
@@ -84,6 +99,12 @@ const ReviewItem = ({ review }) => {
         <Typography variant="body2" gutterBottom sx={{ color: blueGrey[800] }}>
           Room: {review.room}
         </Typography>
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+          <AccessTime style={{ color: 'chocolate', marginTop: '-2px' }} />
+          <Typography variant="body2" gutterBottom style={{ color: 'chocolate' }}>
+            {formattedDate}
+          </Typography>
+        </Box>
       </CardContent>
       <Snackbar
         open={deleteSnackbarOpen}
