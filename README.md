@@ -37,7 +37,23 @@ _Below is how to install and run our project on your machine locally._
    o
    ```
    for the website to appear
-   
+
+
+
+## License
+
+Distributed under the MIT License. See `LICENSE` for more information.
+
+
+## Contacts
+
+Nael Al-Assaad - alassaadn@wit.edu <br />
+Lindsey Johnson - johnsonl10@wit.edu <br />
+Enrique Esteve - estevee@wit.edu <br />
+Chelsea Onuska - onuskac@wit.edu <br />
+David Shneyderman - shneydermand@wit.edu 
+
+ 
 
 
 
