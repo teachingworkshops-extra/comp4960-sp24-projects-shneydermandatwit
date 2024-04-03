@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Typography, Card, CardContent, Avatar, Grid, Button, Snackbar, SnackbarContent, IconButton } from '@mui/material';
-import { grey, blueGrey, orange } from '@mui/material/colors';
+import { Typography, Card, CardContent, Avatar, Grid, Snackbar, SnackbarContent, IconButton } from '@mui/material';
+import { grey, blueGrey } from '@mui/material/colors';
 import Cookies from 'js-cookie';
 import axios from 'axios';
 import { CheckCircle, Error, Delete, AccessTime } from '@mui/icons-material';
@@ -99,9 +99,9 @@ const ReviewItem = ({ review }) => {
         <Typography variant="body2" gutterBottom sx={{ color: blueGrey[800] }}>
           Room: {review.room}
         </Typography>
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-          <AccessTime style={{ color: 'chocolate', marginTop: '-2px' }} />
-          <Typography variant="body2" gutterBottom style={{ color: 'chocolate' }}>
+        <Box sx={{ display: 'flex', flexDirection: 'row', gap: 1, paddingTop: '10px' }}>
+          <AccessTime style={{ color: 'chocolate' }} />
+          <Typography variant="body2" gutterBottom style={{ color: 'chocolate', paddingTop: '3px' }}>
             {formattedDate}
           </Typography>
         </Box>
