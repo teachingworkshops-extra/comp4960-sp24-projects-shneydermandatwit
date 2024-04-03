@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { ROOT } from '../config';
-import '../App.css'
+import '../App.css';
 
 const MapComponent = () => {
   const [map, setMap] = useState(null);
@@ -34,8 +34,8 @@ const MapComponent = () => {
           latLngBounds: bounds,
           strictBounds: true
         }
-
       });
+
       setMap(newMap);
     };
 
@@ -67,43 +67,30 @@ const MapComponent = () => {
           title: marker.building,
         });
 
+        const infoWindow = new google.maps.InfoWindow({
+          content: popupContent,
+        });
+
         mapMarker.addListener('click', () => {
           navigate('/review', { state: { buildingParam: marker.building } });
         });
 
         mapMarker.addListener('mouseover', () => {
           setHighlightedMarker(marker);
-          showInfoWindow(mapMarker);
+          infoWindow.open(map, mapMarker);
         });
 
         mapMarker.addListener('mouseout', () => {
           setHighlightedMarker(null);
-          hideInfoWindow(mapMarker);
+          infoWindow.close();
         });
 
         markerRefs.current[marker.building] = mapMarker;
-        newInfoWindows[marker.building] = new google.maps.InfoWindow({
-          content: popupContent,
-        });
+        newInfoWindows[marker.building] = infoWindow;
       });
       setInfoWindows(newInfoWindows);
     }
   }, [map, data, navigate]);
-
-  const showInfoWindow = (marker) => {
-    const title = marker.getTitle();
-    if (infoWindows[title]) {
-      Object.values(infoWindows).forEach(infoWindow => infoWindow.close());
-      infoWindows[title].open(map, marker);
-    }
-  };
-
-  const hideInfoWindow = (marker) => {
-    const title = marker.getTitle();
-    if (infoWindows[title]) {
-      infoWindows[title].close();
-    }
-  };
 
   const toggleMapKey = () => {
     setShowMapKey(!showMapKey);
@@ -119,7 +106,7 @@ const MapComponent = () => {
     const handlePinHover = (marker) => {
       if (marker) {
         setHighlightedMarker(marker);
-        showInfoWindow(markerRefs.current[marker.building]);
+        infoWindows[marker.building].open(map, markerRefs.current[marker.building]);
       } else {
         setHighlightedMarker(null);
         Object.values(infoWindows).forEach(infoWindow => infoWindow.close());
