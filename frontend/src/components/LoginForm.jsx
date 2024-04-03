@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Container, Typography, TextField, Button } from '@mui/material';
 import axios from 'axios';
 import Cookies from 'js-cookie';
@@ -7,7 +7,6 @@ import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import '../App.css'
 import { ROOT } from '../config';
 
-
 const LoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -15,6 +14,11 @@ const LoginForm = () => {
   const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
 
+  useEffect(()=>{
+    if(Cookies.get("token")){
+      navigate("/home");
+    }
+  },[])
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
@@ -93,7 +97,6 @@ const LoginForm = () => {
         </Button>
       </form>
       <br />
-
       Don't have an account? <a href="/register">Create Account</a>
     </Container>
   );

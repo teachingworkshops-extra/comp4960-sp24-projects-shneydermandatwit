@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { ROOT } from '../config';
-
+import '../App.css'
 
 const MapComponent = () => {
   const [map, setMap] = useState(null);
@@ -13,7 +13,6 @@ const MapComponent = () => {
   const navigate = useNavigate();
   const mapRef = useRef(null);
   const markerRefs = useRef({});
-  
 
   useEffect(() => {
     const initMap = () => {
@@ -30,11 +29,12 @@ const MapComponent = () => {
         mapTypeControl: false,
         fullscreenControl: false,
         tilt: 20,
+        streetViewControl: false,
         restriction: {
           latLngBounds: bounds,
           strictBounds: true
         }
-        
+
       });
       setMap(newMap);
     };
@@ -133,16 +133,16 @@ const MapComponent = () => {
         {/* Displaying pin names */}
         <ul style={{ listStyleType: 'none', padding: 0 }}>
           {pinNames.map((name, index) => (
-            <li 
-              key={index} 
-              onMouseEnter={() => handlePinHover(data[index])} 
-              onMouseLeave={() => handlePinHover(null)} 
+            <li
+              key={index}
+              onMouseEnter={() => handlePinHover(data[index])}
+              onMouseLeave={() => handlePinHover(null)}
               onClick={() => {
                 const correspondingMarker = data.find(item => item.building === name);
                 if (correspondingMarker) {
                   navigate('/review', { state: { buildingParam: correspondingMarker.building } });
                 }
-              }} 
+              }}
               style={{ cursor: 'pointer', fontWeight: highlightedMarker === data[index] ? 'bold' : 'normal', marginBottom: '5px', height: '30px' }}
             >
               {name}
@@ -157,7 +157,7 @@ const MapComponent = () => {
     <div style={{ position: 'relative', width: '100%', height: '87vh' }}>
       <button onClick={toggleMapKey} style={{ position: 'absolute', top: '15px', right: '15px', zIndex: '1000', color: 'white', backgroundColor: 'black' }}>{showMapKey ? 'Hide Map Key' : 'Show Map Key'}</button>
       <MapKey />
-      <div id="map" ref={mapRef} style={{ width: '100%', height: '100%', margin: 'auto'}}></div>
+      <div id="map" ref={mapRef} style={{ width: '100%', height: '100%', margin: 'auto' }}></div>
     </div>
   );
 };
