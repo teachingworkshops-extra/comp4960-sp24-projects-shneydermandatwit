@@ -108,30 +108,7 @@ const Review = () => {
         localStorage.setItem('building', building);
         localStorage.setItem('floor', floor);
         localStorage.setItem('room', room);
-        const fetchReviews = async () => {
-            try {
-                console.log("Building Fetch", building);
-                const response = await axios.get(`${ROOT}/review/?building=${(!(building === "none") ? building : "")}&floor=${(!(floor === "none") ? floor : "")}&room=${(!(room === "none") ? room : "")}`);
-                console.log(response.data);
-                setReviews(response.data); // Assuming response.data is an array of reviews
-                setNoReviewsFound(false); // Reset noReviewsFound state if reviews are found
-            } catch (error) {
-                if (error.response && error.response.status === 404) {
-                    setNoReviewsFound(true); // Set state to indicate no reviews were found
-                } else {
-                    console.error('Error fetching reviews:', error);
-                    setReviews([]);
-                }
-            }
-        };
-
-        const fetchRoomsList = async () => {
-            if (!(building === "none") && !(floor === "none")) {
-                const responseRooms = await axios.get(`${ROOT}/review/rooms/?building=${building}&floor=${floor}`)
-                console.log("Room", responseRooms.data);
-                setRoomsList(responseRooms.data);
-            }
-        }
+        
 
         if (!isFirstRender.current) {
             fetchReviews();
@@ -140,6 +117,31 @@ const Review = () => {
             isFirstRender.current = false;
         }
     }, [building, floor, room]);
+
+    const fetchReviews = async () => {
+        try {
+            console.log("Building Fetch", building);
+            const response = await axios.get(`${ROOT}/review/?building=${(!(building === "none") ? building : "")}&floor=${(!(floor === "none") ? floor : "")}&room=${(!(room === "none") ? room : "")}`);
+            console.log(response.data);
+            setReviews(response.data); // Assuming response.data is an array of reviews
+            setNoReviewsFound(false); // Reset noReviewsFound state if reviews are found
+        } catch (error) {
+            if (error.response && error.response.status === 404) {
+                setNoReviewsFound(true); // Set state to indicate no reviews were found
+            } else {
+                console.error('Error fetching reviews:', error);
+                setReviews([]);
+            }
+        }
+    };
+
+    const fetchRoomsList = async () => {
+        if (!(building === "none") && !(floor === "none")) {
+            const responseRooms = await axios.get(`${ROOT}/review/rooms/?building=${building}&floor=${floor}`)
+            console.log("Room", responseRooms.data);
+            setRoomsList(responseRooms.data);
+        }
+    }
 
     const cBuildingItem = buildingData.find(buildingItem => buildingItem.buildingName === building);
     const floorList = cBuildingItem ? cBuildingItem.floors : [];
