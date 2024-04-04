@@ -113,7 +113,7 @@ const Review = () => {
         //console.log('Effect triggered with values:', building, floor, room);
 
 
-        if (isFirstRender.current) {
+        if (!isFirstRender.current) {
             console.log("fetchReviews");
             fetchReviews();
             fetchRoomsList();
