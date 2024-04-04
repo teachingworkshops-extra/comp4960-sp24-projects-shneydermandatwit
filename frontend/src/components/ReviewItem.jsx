@@ -1,18 +1,31 @@
-import React, { useState, useEffect } from 'react';
-import { Typography, Card, CardContent, Avatar, Grid, Button, Snackbar, SnackbarContent, IconButton } from '@mui/material';
+import React, { useEffect, useState } from 'react';
+import { Typography, Card, CardContent, Avatar, Grid, Snackbar, SnackbarContent, IconButton } from '@mui/material';
 import { grey, blueGrey } from '@mui/material/colors';
 import Cookies from 'js-cookie';
 import axios from 'axios';
-import { CheckCircle, Error } from '@mui/icons-material';
+import { CheckCircle, Error, Delete, AccessTime } from '@mui/icons-material';
 import { ROOT } from '../config';
-
-
+import '../App.css'
+import { Box } from '@mui/material';
 
 const ReviewItem = ({ review }) => {
   const firstLetter = review.posterDisplayName.charAt(0).toUpperCase();
   const [deleteSnackbarOpen, setDeleteSnackbarOpen] = useState(false);
   const [deleteSuccess, setDeleteSuccess] = useState(false);
-console.log(Cookies.get('permission') === 'admin')
+  const [formattedDate, setFormattedDate] = useState("");
+
+  useEffect(() => {
+    if (Object.keys(review).length > 0) {
+      const mongoTimestamp = review.updatedAt;
+      const date = new Date(mongoTimestamp);
+
+      const options = { year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit', timeZoneName: 'short' };
+      const formatted = date.toLocaleDateString('en-US', options);
+      setFormattedDate(formatted);
+
+    }
+  }, [review])
+
 
   const handleDeleteSnackbarClose = () => {
     setDeleteSnackbarOpen(false);
@@ -53,36 +66,44 @@ console.log(Cookies.get('permission') === 'admin')
   }
 
   return (
-    <Card variant='outlined' sx={{ backgroundColor: grey[900], color: grey[100] }}>
+    <Card variant='outlined' sx={{ backgroundColor: grey[200], color: grey[100], elevation: 24, boxShadow: 3 }}>
       <CardContent>
         <Grid container spacing={2} alignItems="center" sx={{ marginBottom: '3vh' }}>
           <Grid item>
             <Avatar sx={{ bgcolor: "orange" }}>{firstLetter}</Avatar>
           </Grid>
           <Grid item>
-            <Typography variant="body1" gutterBottom sx={{ color: blueGrey[300], fontWeight: 'bold' }}>
+            <Typography variant="body1" gutterBottom sx={{ color: blueGrey[900], fontWeight: 'bold' }}>
               {review.posterDisplayName}
             </Typography>
           </Grid>
+          <Grid item alignSelf={'center'} marginLeft='auto'>
+            {(review.posterEmail === decodeCookie() || Cookies.get('permission') === 'admin') && (
+              <Delete className='delete' fontSize='large' onClick={() => deletePost(review._id)} />
+            )}
+          </Grid>
         </Grid>
-        <Typography variant="h5" gutterBottom sx={{ color: blueGrey[200] }}>
+        <Typography variant="h5" gutterBottom sx={{ color: blueGrey[900] }}>
           {review.title}
         </Typography>
-        <Typography variant="body1" gutterBottom sx={{ color: blueGrey[300] }}>
+        <Typography variant="body1" gutterBottom sx={{ color: blueGrey[800] }}>
           {review.description}
         </Typography>
-        <Typography variant="body2" gutterBottom sx={{ color: blueGrey[300] }}>
+        <Typography variant="body2" gutterBottom sx={{ color: blueGrey[800] }}>
           Building: {review.building}
         </Typography>
-        <Typography variant="body2" gutterBottom sx={{ color: blueGrey[300] }}>
+        <Typography variant="body2" gutterBottom sx={{ color: blueGrey[800] }}>
           Floor: {review.floor}
         </Typography>
-        <Typography variant="body2" gutterBottom sx={{ color: blueGrey[300] }}>
+        <Typography variant="body2" gutterBottom sx={{ color: blueGrey[800] }}>
           Room: {review.room}
         </Typography>
-        {(review.posterEmail === decodeCookie() || Cookies.get('permission') === 'admin') && (
-          <Button color="warning" onClick={() => deletePost(review._id)}>Delete</Button>
-        )}
+        <Box sx={{ display: 'flex', flexDirection: 'row', gap: 1, paddingTop: '10px' }}>
+          <AccessTime style={{ color: 'chocolate' }} />
+          <Typography variant="body2" gutterBottom style={{ color: 'chocolate', paddingTop: '3px' }}>
+            {formattedDate}
+          </Typography>
+        </Box>
       </CardContent>
       <Snackbar
         open={deleteSnackbarOpen}

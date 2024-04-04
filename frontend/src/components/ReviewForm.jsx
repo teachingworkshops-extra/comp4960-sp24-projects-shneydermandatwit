@@ -5,27 +5,39 @@ import { TextField, Button, Typography, Grid, Box, Snackbar, SnackbarContent, Ic
 import { CheckCircle } from '@mui/icons-material';
 import { ROOT } from '../config';
 
-
 function ReviewForm({ building, floor, roomItem }) {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [room, setRoom] = useState('');
     const [successSnackbarOpen, setSuccessSnackbarOpen] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
-
+    const [canSubmit, setCanSubmit] = useState(false);
 
     useEffect(() => {
         const checkRoom = (roomItem !== 'none') ? roomItem : room;
 
         setRoom(checkRoom);
 
-
     }, [roomItem]);
+
+    useEffect(() => {
+        if (!title || !description || !building || !floor || !room || building === "none" || floor === "none" || room === "none") {
+            setCanSubmit(false);
+            setErrorMessage("Please specify the building, floor, room, title and description.")
+
+        }
+        else {
+            setCanSubmit(true)
+            setErrorMessage("")
+
+        }
+
+
+    }, [title, description, room, building, floor])
 
     const handleCloseSnackbar = () => {
         setSuccessSnackbarOpen(false);
     };
-
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -35,7 +47,6 @@ function ReviewForm({ building, floor, roomItem }) {
         try {
 
             if (!title || !description || !building || !floor || !room || building === "none" || floor === "none" || room === "none") {
-                setErrorMessage("Please specify the building, floor, room, title and description.")
                 return;
             }
 
@@ -96,7 +107,6 @@ function ReviewForm({ building, floor, roomItem }) {
                                 style: { color: 'black' }, // Custom style for input label color
                             }}
                         />
-
                     </Grid>
                     {roomItem === 'none' && (
                         <Grid item xs={12}>
@@ -120,7 +130,6 @@ function ReviewForm({ building, floor, roomItem }) {
                                 InputLabelProps={{
                                     style: { color: 'black' }, // Custom style for input label color
                                 }}
-
                             />
                         </Grid>
                     )}
@@ -147,13 +156,14 @@ function ReviewForm({ building, floor, roomItem }) {
                             InputLabelProps={{
                                 style: { color: 'black' }, // Custom style for input label color
                             }}
-
                         />
                     </Grid>
                     <Grid item xs={12}>
                         <Button type="submit" fullWidth
                             variant="outlined"
-                            color="warning">
+                            color="warning"
+                            disabled={!canSubmit}
+                        >
                             Create review
                         </Button>
                     </Grid>

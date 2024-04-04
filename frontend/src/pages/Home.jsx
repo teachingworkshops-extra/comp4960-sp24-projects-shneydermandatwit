@@ -8,17 +8,18 @@ import Collapse from '@mui/material/Collapse';
 import Button from '@mui/material/Button';
 import CloseIcon from '@mui/icons-material/Close';
 import AlertTitle from '@mui/material/AlertTitle';
+import { grey } from '@mui/material/colors';
 
 const Home = () => {
   const [open, setOpen] = React.useState(true);
 
   return (
     <>
-      <div id='homePage' style={{ width: '100%', height: '100%', overflow: 'hidden', overflowY: 'auto'}}>
-        <Box sx={{ width: '100%'}}>
+      <div id='homePage' style={{ width: '100%', height: '100%', overflow: 'hidden', overflowY: 'auto' }}>
+        <Box sx={{ width: '100%' }}>
           <Collapse in={open}>
             <Alert variant="outlined" severity="info" color="warning"
-              sx={{ mb: 2, ml: 1, mr: 1, bgcolor: 'background.paper' }}
+              sx={{ mb: 2, ml: 1, mr: 1, bgcolor: 'background.paper', border: '3px solid chocolate', color: grey[900] }}
               action={
                 <IconButton
                   aria-label="close"
@@ -57,11 +58,10 @@ const Home = () => {
           </Button>
         </Box>
         <div style={{ height: 'calc(100% - 30px)', overflow: 'hidden', overflowY: 'auto', marginBottom: '10vh' }}>
-          <Box sx={{ border: 4, borderColor: "chocolate", width: '95%', height: '90%', margin: 'auto' }}>
+          <Box sx={{ border: 4, borderColor: "chocolate", width: '95%', height: '91%', margin: 'auto' }}>
             <MapContainer />
           </Box>
         </div>
-
       </div>
     </>
   )
