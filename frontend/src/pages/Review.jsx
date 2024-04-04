@@ -113,13 +113,13 @@ const Review = () => {
         //console.log('Effect triggered with values:', building, floor, room);
 
 
-        if (!isFirstRender.current) {
+        if (isFirstRender.current) {
             console.log("fetchReviews");
             fetchReviews();
             fetchRoomsList();
         } else {
             console.log('Before isFirstRender update:', isFirstRender.current);
-            isFirstRender.current = false;
+            isFirstRender.current = true;
             console.log('After isFirstRender update:', isFirstRender.current);
                     }
     }, [building, floor, room]);
