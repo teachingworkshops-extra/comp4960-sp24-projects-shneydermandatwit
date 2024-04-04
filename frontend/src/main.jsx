@@ -31,6 +31,7 @@ export default function App() {
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
+  <script src='http://localhost:8097'></script>
     <App />
   </React.StrictMode>,
 )
