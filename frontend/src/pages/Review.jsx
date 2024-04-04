@@ -109,8 +109,8 @@ const Review = () => {
         localStorage.setItem('floor', floor);
         localStorage.setItem('room', room);
 
-        //console.log("firstRender". isFirstRender);
-        console.log('Effect triggered with values:', building, floor, room);
+        console.log("firstRender check", isFirstRender);
+        //console.log('Effect triggered with values:', building, floor, room);
 
 
         if (!isFirstRender.current) {
