@@ -114,6 +114,7 @@ const Review = () => {
 
 
         if (!isFirstRender.current) {
+            console.log("fetchReviews");
             fetchReviews();
             fetchRoomsList();
         } else {
