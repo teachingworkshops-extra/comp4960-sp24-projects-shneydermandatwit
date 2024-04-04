@@ -108,14 +108,19 @@ const Review = () => {
         localStorage.setItem('building', building);
         localStorage.setItem('floor', floor);
         localStorage.setItem('room', room);
-        
+
+        //console.log("firstRender". isFirstRender);
+        console.log('Effect triggered with values:', building, floor, room);
+
 
         if (!isFirstRender.current) {
             fetchReviews();
             fetchRoomsList();
         } else {
+            console.log('Before isFirstRender update:', isFirstRender.current);
             isFirstRender.current = false;
-        }
+            console.log('After isFirstRender update:', isFirstRender.current);
+                    }
     }, [building, floor, room]);
 
     const fetchReviews = async () => {
