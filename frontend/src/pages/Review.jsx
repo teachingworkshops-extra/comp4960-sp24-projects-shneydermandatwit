@@ -113,15 +113,18 @@ const Review = () => {
         //console.log('Effect triggered with values:', building, floor, room);
 
 
-        if (!isFirstRender.current) {
-            console.log("fetchReviews");
-            fetchReviews();
-            fetchRoomsList();
-        } else {
-            console.log('Before isFirstRender update:', isFirstRender.current);
-            isFirstRender.current = false;
-            console.log('After isFirstRender update:', isFirstRender.current);
-                    }
+        // if (!isFirstRender.current) {
+        //     console.log("fetchReviews");
+        //     fetchReviews();
+        //     fetchRoomsList();
+        // } else {
+        //     console.log('Before isFirstRender update:', isFirstRender.current);
+        //     isFirstRender.current = false;
+        //     console.log('After isFirstRender update:', isFirstRender.current);
+        //             }
+
+        fetchReviews();
+        fetchRoomsList();
     }, [building, floor, room]);
 
     const fetchReviews = async () => {
