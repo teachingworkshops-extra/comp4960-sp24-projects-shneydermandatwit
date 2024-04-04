@@ -38,6 +38,17 @@ _Below is how to install and run our project on your machine locally._
    ```
    for the website to appear
 
+## Usage
+
+Navigate to the website https://ratemywit.netlify.app/ <br />
+View the video below to see a demo of how the website works.
+
+## Test
+RUNNING BACKEND TESTS:
+cd into backend folder and enter 
+```sh
+npm run test
+```
 
 
 ## License
@@ -55,12 +66,6 @@ David Shneyderman - shneydermand@wit.edu
 
  
 
-
-
-
-
-RUNNING BACKEND TESTS:
-cd into backend folder and enter "npm run test"
 
 BUILDING FRONTEND:
 cd into frontend folder and enter "npm run build"
