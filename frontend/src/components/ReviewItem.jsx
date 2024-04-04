@@ -26,7 +26,6 @@ const ReviewItem = ({ review }) => {
     }
   }, [review])
 
-  console.log(Cookies.get('permission') === 'admin')
 
   const handleDeleteSnackbarClose = () => {
     setDeleteSnackbarOpen(false);

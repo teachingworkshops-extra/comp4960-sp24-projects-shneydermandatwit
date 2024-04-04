@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Grid, Paper, Typography, Select, MenuItem, Collapse, Button, Dialog, DialogActions, DialogTitle, DialogContent, Divider } from '@mui/material';
 import { KeyboardArrowDownRounded, KeyboardArrowUpRounded, SearchOff } from '@mui/icons-material'
 import ReviewList from '../components/ReviewList';
@@ -18,21 +18,26 @@ const Review = () => {
     const [roomsList, setRoomsList] = useState([]);
     const [noReviewsFound, setNoReviewsFound] = useState(false);
 
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
     const location = useLocation();
     const { state } = location;
     const buildingParam = state ? state.buildingParam : null;
 
+
+    const isFirstRender = useRef(true);
+
+    
+
     useEffect(() => {
-        if (buildingParam) {
+        if (buildingParam && buildingParam !== building) {
             setBuilding(buildingParam);
             setFloor('none');
             setRoom('none');
             navigate('/review', { replace: true });
-
         }
-    }, []);
+    }, [buildingParam]);
+    
 
     const buildingData = [
         {
@@ -105,8 +110,9 @@ const Review = () => {
         localStorage.setItem('room', room);
         const fetchReviews = async () => {
             try {
-                console.log("Floor", floor);
+                console.log("Building Fetch", building);
                 const response = await axios.get(`${ROOT}/review/?building=${(!(building === "none") ? building : "")}&floor=${(!(floor === "none") ? floor : "")}&room=${(!(room === "none") ? room : "")}`);
+                console.log(response.data);
                 setReviews(response.data); // Assuming response.data is an array of reviews
                 setNoReviewsFound(false); // Reset noReviewsFound state if reviews are found
             } catch (error) {
@@ -127,8 +133,12 @@ const Review = () => {
             }
         }
 
-        fetchReviews();
-        fetchRoomsList();
+        if (!isFirstRender.current) {
+            fetchReviews();
+            fetchRoomsList();
+        } else {
+            isFirstRender.current = false;
+        }
     }, [building, floor, room]);
 
     const cBuildingItem = buildingData.find(buildingItem => buildingItem.buildingName === building);
