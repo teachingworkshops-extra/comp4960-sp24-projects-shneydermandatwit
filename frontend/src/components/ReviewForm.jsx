@@ -41,41 +41,40 @@ function ReviewForm({ building, floor, roomItem }) {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-
+    
         const token = Cookies.get('token');
-
+    
         try {
-
             if (!title || !description || !building || !floor || !room || building === "none" || floor === "none" || room === "none") {
                 return;
             }
-
+    
+            const trimmedRoom = room.trim();
+    
             const response = await axios.post(`${ROOT}/review/create`, {
                 title,
                 description,
                 building,
                 floor,
-                room,
+                room: trimmedRoom, 
             }, {
                 headers: {
                     Authorization: `Bearer: ${token}`,
                 },
             });
-
+    
             console.log('Review created:', response.data);
             setSuccessSnackbarOpen(true);
-
-            // Delay reload by 2 seconds
+    
             setTimeout(() => {
                 window.location.reload();
             }, 500);
-
-            // Add any further handling here, such as showing a success message or redirecting the user
+    
         } catch (error) {
             console.error('Error creating review:', error);
-            // Add error handling, such as displaying an error message to the user
         }
     };
+    
 
     return (
         <Box p={2} >
