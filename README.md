@@ -53,6 +53,13 @@ View the video below to see a demo of how the website works.
 
 [![Rate My WIT](https://img.youtube.com/vi/DHgkmN_UlVA/0.jpg)](https://www.youtube.com/watch?v=DHgkmN_UlVA)
 
+## Build
+BUILDING FRONTEND:
+cd into frontend folder and enter 
+```sh
+npm run build
+```
+
 
 ## Test
 RUNNING BACKEND TESTS:
@@ -75,8 +82,4 @@ Enrique Esteve - estevee@wit.edu <br />
 Chelsea Onuska - onuskac@wit.edu <br />
 David Shneyderman - shneydermand@wit.edu 
 
- 
 
-
-BUILDING FRONTEND:
-cd into frontend folder and enter "npm run build"
