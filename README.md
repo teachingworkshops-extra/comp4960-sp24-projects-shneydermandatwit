@@ -43,6 +43,9 @@ _Below is how to install and run our project on your machine locally._
 Navigate to the website https://ratemywit.netlify.app/ <br />
 View the video below to see a demo of how the website works.
 
+[![Rate My WIT](https://img.youtube.com/vi/DHgkmN_UlVA/0.jpg)](https://www.youtube.com/watch?v=DHgkmN_UlVA)
+
+
 ## Test
 RUNNING BACKEND TESTS:
 cd into backend folder and enter 
