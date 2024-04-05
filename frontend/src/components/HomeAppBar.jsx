@@ -22,6 +22,7 @@ const HomeAppBar = () => {
   const handleLogout = () => {
     Cookies.remove('displayName'); // Clear the display name cookie
     Cookies.remove('token'); // Clear the display name cookie
+    Cookies.remove('permission');
 
     setUserInfo(null); // Clear the display name in state
     window.location.reload();
