@@ -105,17 +105,21 @@ const Review = () => {
     };
 
     useEffect(() => {
+        // Check if it's the first render
+        if (!isFirstRender.current) {
+            isFirstRender.current = false;
+            localStorage.setItem('building', building);
+        localStorage.setItem('floor', floor);
+        localStorage.setItem('room', room);
+            return; // Skip the fetch on first render
+        }
+    
         localStorage.setItem('building', building);
         localStorage.setItem('floor', floor);
         localStorage.setItem('room', room);
-        
-
-        if (!isFirstRender.current) {
-            fetchReviews();
-            fetchRoomsList();
-        } else {
-            isFirstRender.current = false;
-        }
+    
+        fetchReviews();
+        fetchRoomsList();
     }, [building, floor, room]);
 
     const fetchReviews = async () => {
