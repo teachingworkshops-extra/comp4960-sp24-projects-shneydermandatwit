@@ -27,10 +27,13 @@ const Review = () => {
 
     const isFirstRender = useRef(true);
 
+    let fromMap = false;
+
     
 
     useEffect(() => {
         if (buildingParam && buildingParam !== building) {
+            fromMap = true;
             setBuilding(buildingParam);
             setFloor('none');
             setRoom('none');
@@ -106,8 +109,8 @@ const Review = () => {
 
     useEffect(() => {
         // Check if it's the first render
-        if (!isFirstRender.current) {
-            isFirstRender.current = false;
+        if (fromMap) {
+            fromMap = false;
             localStorage.setItem('building', building);
         localStorage.setItem('floor', floor);
         localStorage.setItem('room', room);
