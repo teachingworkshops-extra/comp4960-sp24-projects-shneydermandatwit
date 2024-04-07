@@ -1,7 +1,6 @@
 import  express  from "express";
 import { PORT, MONGO_URL } from "./config.js";
 import mongoose from "mongoose";
-//import { User } from "./models/userModel.js";
 import cors from "cors";
 import usersRoute from "./routes/usersRoute.js";
 import reviewsRoute from "./routes/reviewsRoute.js"

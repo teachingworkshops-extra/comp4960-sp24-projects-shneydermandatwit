@@ -120,6 +120,7 @@ const Review = () => {
     
         fetchReviews();
         fetchRoomsList();
+
     }, [building, floor, room]);
 
     const fetchReviews = async () => {
