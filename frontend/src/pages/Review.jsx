@@ -27,10 +27,13 @@ const Review = () => {
 
     const isFirstRender = useRef(true);
 
+    let fromMap = false;
+
     
 
     useEffect(() => {
         if (buildingParam && buildingParam !== building) {
+            fromMap = true;
             setBuilding(buildingParam);
             setFloor('none');
             setRoom('none');
@@ -105,17 +108,22 @@ const Review = () => {
     };
 
     useEffect(() => {
+        // Check if it's the first render
+        if (fromMap) {
+            fromMap = false;
+            localStorage.setItem('building', building);
+        localStorage.setItem('floor', floor);
+        localStorage.setItem('room', room);
+            return; // Skip the fetch on first render
+        }
+    
         localStorage.setItem('building', building);
         localStorage.setItem('floor', floor);
         localStorage.setItem('room', room);
-        
+    
+        fetchReviews();
+        fetchRoomsList();
 
-        if (!isFirstRender.current) {
-            fetchReviews();
-            fetchRoomsList();
-        } else {
-            isFirstRender.current = false;
-        }
     }, [building, floor, room]);
 
     const fetchReviews = async () => {
