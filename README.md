@@ -2,6 +2,9 @@
 
 Welcome to Rate My Wit, a project by The Reviewers!
 
+### Link
+https://ratemywit.netlify.app
+
 ## Overview
 
 ### Introduction

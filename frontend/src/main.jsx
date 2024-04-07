@@ -16,7 +16,7 @@ export default function App() {
       <UserContextProvider>
         <Routes>
           <Route path="/" element={<HomeAppBar />}>
-            <Route index element={<Login />} />
+            <Route index element={<Home/>} />
             <Route path="home" element={<Home />} />
             <Route path="review" element={<Review />} />
             <Route path="login" element={<Login />} />
